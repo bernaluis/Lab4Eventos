@@ -48,6 +48,31 @@ namespace Pedidos.Models
 
 
         //metodos
+        //para llenar el comobobx de cliente
+        public DataTable getClienteCmb()
+        {
+            DataTable mydt = new DataTable();
+            Conexion c = new Conexion();
+            SqlConnection conn = c.conexion();
+            string sql = "select idCliente as ID,concat(nombres,' ',apellidos)as Nombre from clientes where estado='1';";
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            SqlDataReader mydr = null;
+            try
+            {
+                mydt.Columns.Add("ID");
+                mydt.Columns.Add("Nombres");
+                conn.Open();
+                mydr = cmd.ExecuteReader();
+                mydt.Load(mydr);
+                
+            }
+            finally
+            {
+                cmd.Dispose();
+                conn.Close();
+            }
+            return mydt;
+        }
         //obtener clientes
         public DataTable getCliente()
         {
@@ -99,7 +124,7 @@ namespace Pedidos.Models
             long id = 0;
             Conexion c = new Conexion();
             SqlConnection conn = c.conexion();
-            string sql = "INSERT INTO clientes(nombres, apellidos , telefono , direccion , ciudad, departamento , estado) VALUES  (@nombres, @apellidos , @telefono   , @direccion , @ciudad, @departamento   , @estado); ; select IDENT_CURRENT('clientes') as id;";
+            string sql = "INSERT INTO clientes(nombres, apellidos , telefono , direccion , ciudad, departamento , estado) VALUES  (@nombres, @apellidos , @telefono   , @direccion , @ciudad, @departamento   , @estado) ; select IDENT_CURRENT('clientes') as id;";
             SqlCommand cmd = new SqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@nombres", this.nombres);
             cmd.Parameters.AddWithValue("@apellidos", this.apellidos);

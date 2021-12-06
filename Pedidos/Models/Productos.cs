@@ -40,6 +40,56 @@ namespace Pedidos.Models
         public string Producto { get => producto; set => producto = value; }
 
         //metodos
+        //para verificar el inventario del producto
+        public void leerInventario()
+        {
+            DataTable mydt = new DataTable();
+            Conexion c = new Conexion();
+            SqlConnection conn = c.conexion();
+            string sql = "select cantidadEnStock from productos where idProducto=@idProducto;";
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@idProducto", this.idProducto);
+            SqlDataReader mydr = null;
+            try
+            {
+                conn.Open();
+                mydr = cmd.ExecuteReader();
+                mydt.Load(mydr);
+                this.cantidadEnStock = Convert.ToInt32(mydt.Rows[0][0].ToString());
+                Console.WriteLine("cantidadadasdazsdasd "+cantidadEnStock);
+            }
+            finally
+            {
+                cmd.Dispose();
+                conn.Close();
+            }
+
+        }
+        //para llenar el comobobx de producto
+        public DataTable getProductoCmb()
+        {
+            DataTable mydt = new DataTable();
+            Conexion c = new Conexion();
+            SqlConnection conn = c.conexion();
+            string sql = "select idProducto,producto from productos where estado='1';";
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            SqlDataReader mydr = null;
+            try
+            {
+                mydt.Columns.Add("idProducto",typeof(string));
+                mydt.Columns.Add("producto",typeof(string));
+                conn.Open();
+                mydr = cmd.ExecuteReader();
+                mydt.Load(mydr);
+
+            }
+            finally
+            {
+                cmd.Dispose();
+                conn.Close();
+            }
+            return mydt;
+        }
         //obtener productos
         public DataTable getProductos()
         {
@@ -91,7 +141,7 @@ namespace Pedidos.Models
             long id = 0;
             Conexion c = new Conexion();
             SqlConnection conn = c.conexion();
-            string sql = "INSERT INTO productos(producto,descripcion,cantidadEnStock,precioVenta , estado) VALUES  (@producto,@descripcion,@cantidadEnStock,@precioVenta, @estado); ; select IDENT_CURRENT('productos') as id;";
+            string sql = "INSERT INTO productos(producto,descripcion,cantidadEnStock,precioVenta , estado) VALUES  (@producto,@descripcion,@cantidadEnStock,@precioVenta, @estado);  select IDENT_CURRENT('pedidos') as id;";
             SqlCommand cmd = new SqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@producto", this.producto);
             cmd.Parameters.AddWithValue("@descripcion", this.descripcion);

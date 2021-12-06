@@ -1,12 +1,5 @@
 ﻿using Pedidos.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Pedidos
@@ -23,6 +16,12 @@ namespace Pedidos
         //instancia y id para usar en el modificar y eliminar producto
         private readonly Productos p = new Productos();
         string idProducto = null;
+        //instancia y id para usar en el pedido
+        private readonly Pedido pe = new Pedido();
+        string idPedido = null;
+        //instancia y id para usar en el pedido detalle
+        private readonly DetallePedido ped = new DetallePedido();
+        string idDetalle = null;
         //metodo para llenar el datagrid y/o refrescarlo cliente
         private void refrescarGridCliente()
         {
@@ -92,6 +91,7 @@ namespace Pedidos
                 {
                     MessageBox.Show("Agregado con exito");
                     refrescarGridCliente();
+                    llenarCmbCliente();
                 }
             }
             else
@@ -99,12 +99,31 @@ namespace Pedidos
                 MessageBox.Show("Ingrese los datos correctamente");
             }
         }
+        //para llenar el combobox del cliente
+        private void llenarCmbCliente()
+        {
+            
+            cmbCliente.DataSource = c.getClienteCmb();
+            cmbCliente.DisplayMember ="Nombre";
+            cmbCliente.ValueMember = "ID" ;
+            
+        }
+        //para llenar el combobox del producto
+        private void llenarCmbProducto()
+        {
 
+            cmbProducto.DataSource = p.getProductoCmb();
+            cmbProducto.DisplayMember = "producto";
+            cmbProducto.ValueMember = "idProducto";
 
+        }
         private void frmMain_Load(object sender, EventArgs e)
         {
             refrescarGridCliente();
             refrescarGridProducto();
+            llenarCmbCliente();
+            llenarCmbProducto();
+            dtpFechaPedido.Value = DateTime.Now;
         }
         //modificar cliente
         private void btnModificarU_Click(object sender, EventArgs e)
@@ -127,6 +146,7 @@ namespace Pedidos
                 {
                     MessageBox.Show("Modificado con exito");
                     refrescarGridCliente();
+                    llenarCmbCliente();
                 }
             }
             else
@@ -145,6 +165,7 @@ namespace Pedidos
                 {
                     MessageBox.Show("Eliminado con exito");
                     refrescarGridCliente();
+                    llenarCmbCliente();
                 }
             }
             else
@@ -175,13 +196,7 @@ namespace Pedidos
         private void txtCantidadStock_KeyPress(object sender, KeyPressEventArgs e)
         {
             //validacion para solo numeros
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
-            {
-                e.Handled = true;
-            }
-
-            //un decimal
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
@@ -235,6 +250,7 @@ namespace Pedidos
                 {
                     MessageBox.Show("Agregado con exito");
                     refrescarGridProducto();
+                    llenarCmbProducto();
                 }
             }
             else
@@ -261,6 +277,7 @@ namespace Pedidos
                 {
                     MessageBox.Show("Modificado con exito");
                     refrescarGridProducto();
+                    llenarCmbProducto();
                 }
             }
             else
@@ -332,11 +349,191 @@ namespace Pedidos
                 {
                     MessageBox.Show("Eliminado con exito");
                     refrescarGridProducto();
+                    llenarCmbProducto();
                 }
             }
             else
             {
                 MessageBox.Show("Seleccione un producto a eliminar");
+            }
+        }
+        //para agregar al carrito de compra
+        private void btnAgregarC_Click(object sender, EventArgs e)
+        {
+            if (cmbProducto.Items.Count == 0)
+            {
+                MessageBox.Show("No hay productos registrados");
+            }
+            else
+            {
+                p.IdProducto = Convert.ToInt64(cmbProducto.SelectedValue.ToString());
+                p.leerInventario();
+                //si la cantidad solicitada es menor al stock pasa
+                if (p.CantidadEnStock >= Convert.ToInt32(txtCantidad.Text.Trim()))
+                {
+
+                    //ver si tiene rows el dgv
+
+                    if (dgvCarrito.Rows.Count >= 1)
+                    {
+
+                        //bucle para recorrer el dgv
+                        for (int i = 0; dgvCarrito.Rows.Count > i; i++)
+                        {
+                            //verificar si hay otro registro con el producto seleccionado
+                            if (dgvCarrito.Rows[i].Cells[0].Value.ToString().Contains(cmbProducto.SelectedValue.ToString()))
+                            {
+                                //reemplazar la row con la nueva cantidad y precio
+                                dgvCarrito.Rows.RemoveAt(i);
+                                dgvCarrito.Rows.Add(cmbProducto.SelectedValue.ToString(), cmbProducto.Text, txtPrecioU.Text.Trim(), Convert.ToInt32(txtCantidad.Text.Trim()));
+
+                                break;
+                            }
+                            else if (dgvCarrito.Rows.Count == i + 1)
+                            {
+                                dgvCarrito.Rows.Add(cmbProducto.SelectedValue.ToString(), cmbProducto.Text, txtPrecioU.Text.Trim(), Convert.ToInt32(txtCantidad.Text.Trim()));
+
+                            }
+                        }
+                        txtPrecioU.Clear();
+                        txtCantidad.Clear();
+
+                    }
+                    else
+                    {
+                        //si el dgv no tiene rows se agrega 
+                        dgvCarrito.Rows.Add(cmbProducto.SelectedValue.ToString(), cmbProducto.Text, txtPrecioU.Text.Trim(), Convert.ToInt32(txtCantidad.Text.Trim()));
+                        txtPrecioU.Clear();
+                        txtCantidad.Clear();
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Excede la cantidad en inventario");
+                }
+            }
+
+
+        }
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+            //borra la celda que se selecciona en el carrito de compra
+            dgvCarrito.Rows.RemoveAt(dgvCarrito.CurrentCell.RowIndex);
+        }
+        private void limpiarPedido()
+        {
+            dgvCarrito.Rows.Clear();
+            txtComentarios.Clear();
+        }
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            limpiarPedido();
+        }
+        //validacion solo numeros
+        private void txtPrecioU_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //validacion para solo numeros
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            //un decimal
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+        //validacion para solo numeros
+        private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //validacion para solo numeros
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) )
+            {
+                e.Handled = true;
+            }
+
+            
+        }
+
+        private void btnFinalizar_Click(object sender, EventArgs e)
+        {
+            //validando
+            if (cmbCliente.Items.Count==0)
+            {
+                MessageBox.Show("No hay clientes registrados");
+            }
+            else
+            {
+                if (dgvCarrito.Rows.Count == 0)
+                {
+                    MessageBox.Show("Agregue productos al pedido");
+                }
+                else
+                {
+                    if (dtpFechaPedido.Value >= dtpFechaEsperada.Value)
+                    {
+                        MessageBox.Show("La fecha del pedido no puede ser la misma o menor a la de la fecha esperada");
+                    }
+                    else
+                    {
+                        if (txtComentarios.Text != "")
+                        {
+                            //ingresar los valores para el pedido general
+                            pe.IdCliente = Convert.ToInt64(cmbCliente.SelectedValue.ToString());
+                            pe.FechaPedido = dtpFechaPedido.Value;
+                            pe.FechaEsperada = dtpFechaEsperada.Value;
+                            pe.Comentarios = txtComentarios.Text.Trim();
+                            //estado puede ser Procesado,En Camino, Enviado y Cancelado
+                            //solo puede ser cancelado si aun esta en estado de procesado
+                            pe.Estado = "Procesado";
+                            //agregar
+                            long id = pe.agregarPedido(); ;
+                            //verificar si se agrego
+                            if (id > 0)
+                            {
+                                double totalPagar=0;
+                                //agregando el detalle
+                               for(int i=0;dgvCarrito.Rows.Count>i;i++)
+                                {
+                                    //ingresar los valores para el pedido general
+                                    ped.IdPedido = id;
+                                    ped.IdProducto = Convert.ToInt64(dgvCarrito.Rows[i].Cells[0].Value.ToString());
+                                    ped.PrecioUnidad = Convert.ToDouble(dgvCarrito.Rows[i].Cells[2].Value.ToString());
+                                    ped.NumeroLinea = Convert.ToInt32(dgvCarrito.Rows[i].Cells[3].Value.ToString());  
+                                    ped.Estado = "1";
+                                    totalPagar += (Convert.ToDouble(dgvCarrito.Rows[i].Cells[2].Value.ToString()) * Convert.ToInt32(dgvCarrito.Rows[i].Cells[3].Value.ToString()));
+                                    //agregar
+                                    long idd = ped.agregarDetallePedido(); 
+                                    //verificar si se agrego
+                                    if (idd > 0)
+                                    {
+                                        //descontando la orden del stock del producto
+                                        p.IdProducto= Convert.ToInt64(dgvCarrito.Rows[i].Cells[0].Value.ToString());
+                                        p.leerInventario();
+                                        int nuevaCantidad = p.CantidadEnStock - ped.NumeroLinea;
+                                        p.CantidadEnStock = nuevaCantidad;
+                                        long idprod = p.modificarStockProducto();
+                                        //verificar si se modifico
+                                        if (idprod > 0)
+                                        {
+                                            Console.WriteLine("detalle y inventario modificado");
+                                            refrescarGridProducto();
+                                        }
+                                    }
+                                }
+                                MessageBox.Show("Pedido creado exitosamente, el total a pagar sera de: " + totalPagar+ "$");
+                                limpiarPedido();   
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ingrese un comentario");
+                        }
+                    }
+                }
             }
         }
     }

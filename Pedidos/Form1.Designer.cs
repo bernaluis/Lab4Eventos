@@ -80,7 +80,35 @@ namespace Pedidos
             this.btnEliminarP = new System.Windows.Forms.Button();
             this.btnModificarPStock = new System.Windows.Forms.Button();
             this.btnModificarPPrecio = new System.Windows.Forms.Button();
+            this.tabPedidos = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.cmbCliente = new System.Windows.Forms.ComboBox();
+            this.lblCliente = new System.Windows.Forms.Label();
+            this.lblFecha1 = new System.Windows.Forms.Label();
+            this.lblFecha2 = new System.Windows.Forms.Label();
+            this.lblComentarios = new System.Windows.Forms.Label();
+            this.dtpFechaPedido = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaEsperada = new System.Windows.Forms.DateTimePicker();
+            this.txtComentarios = new System.Windows.Forms.TextBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.lblProductoCarrito = new System.Windows.Forms.Label();
+            this.cmbProducto = new System.Windows.Forms.ComboBox();
+            this.btnAgregarC = new System.Windows.Forms.Button();
+            this.btnBorrar = new System.Windows.Forms.Button();
+            this.dgvCarrito = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioUnidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numeroLinea = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblCantidad = new System.Windows.Forms.Label();
+            this.txtPrecioU = new System.Windows.Forms.TextBox();
+            this.txtCantidad = new System.Windows.Forms.TextBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.btnFinalizar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.tabMenu.SuspendLayout();
+            this.tabPedidosPag.SuspendLayout();
             this.tabClientePag.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuario)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -93,11 +121,16 @@ namespace Pedidos
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
             this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCarrito)).BeginInit();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabMenu
             // 
             this.tabMenu.Controls.Add(this.tabPedidosPag);
+            this.tabMenu.Controls.Add(this.tabPedidos);
             this.tabMenu.Controls.Add(this.tabClientePag);
             this.tabMenu.Controls.Add(this.tabProductoPag);
             this.tabMenu.Controls.Add(this.tabAbout);
@@ -109,12 +142,15 @@ namespace Pedidos
             // 
             // tabPedidosPag
             // 
+            this.tabPedidosPag.Controls.Add(this.groupBox7);
+            this.tabPedidosPag.Controls.Add(this.groupBox6);
+            this.tabPedidosPag.Controls.Add(this.groupBox5);
             this.tabPedidosPag.Location = new System.Drawing.Point(4, 22);
             this.tabPedidosPag.Name = "tabPedidosPag";
             this.tabPedidosPag.Padding = new System.Windows.Forms.Padding(3);
             this.tabPedidosPag.Size = new System.Drawing.Size(1301, 641);
             this.tabPedidosPag.TabIndex = 0;
-            this.tabPedidosPag.Text = "Pedidos";
+            this.tabPedidosPag.Text = "Crear Pedido";
             this.tabPedidosPag.UseVisualStyleBackColor = true;
             // 
             // tabClientePag
@@ -609,6 +645,263 @@ namespace Pedidos
             this.btnModificarPPrecio.UseVisualStyleBackColor = true;
             this.btnModificarPPrecio.Click += new System.EventHandler(this.btnModificarPPrecio_Click);
             // 
+            // tabPedidos
+            // 
+            this.tabPedidos.Location = new System.Drawing.Point(4, 22);
+            this.tabPedidos.Name = "tabPedidos";
+            this.tabPedidos.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPedidos.Size = new System.Drawing.Size(1301, 641);
+            this.tabPedidos.TabIndex = 5;
+            this.tabPedidos.Text = "Pedidos";
+            this.tabPedidos.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.txtComentarios);
+            this.groupBox5.Controls.Add(this.dtpFechaEsperada);
+            this.groupBox5.Controls.Add(this.dtpFechaPedido);
+            this.groupBox5.Controls.Add(this.lblComentarios);
+            this.groupBox5.Controls.Add(this.lblFecha2);
+            this.groupBox5.Controls.Add(this.lblFecha1);
+            this.groupBox5.Controls.Add(this.lblCliente);
+            this.groupBox5.Controls.Add(this.cmbCliente);
+            this.groupBox5.Location = new System.Drawing.Point(0, 0);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(1295, 169);
+            this.groupBox5.TabIndex = 0;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Datos generales:";
+            // 
+            // cmbCliente
+            // 
+            this.cmbCliente.FormattingEnabled = true;
+            this.cmbCliente.Location = new System.Drawing.Point(108, 33);
+            this.cmbCliente.Name = "cmbCliente";
+            this.cmbCliente.Size = new System.Drawing.Size(269, 21);
+            this.cmbCliente.TabIndex = 0;
+            // 
+            // lblCliente
+            // 
+            this.lblCliente.AutoSize = true;
+            this.lblCliente.Location = new System.Drawing.Point(21, 41);
+            this.lblCliente.Name = "lblCliente";
+            this.lblCliente.Size = new System.Drawing.Size(42, 13);
+            this.lblCliente.TabIndex = 1;
+            this.lblCliente.Text = "Cliente:";
+            // 
+            // lblFecha1
+            // 
+            this.lblFecha1.AutoSize = true;
+            this.lblFecha1.Location = new System.Drawing.Point(21, 88);
+            this.lblFecha1.Name = "lblFecha1";
+            this.lblFecha1.Size = new System.Drawing.Size(92, 13);
+            this.lblFecha1.TabIndex = 2;
+            this.lblFecha1.Text = "Fecha del pedido:";
+            // 
+            // lblFecha2
+            // 
+            this.lblFecha2.AutoSize = true;
+            this.lblFecha2.Location = new System.Drawing.Point(21, 130);
+            this.lblFecha2.Name = "lblFecha2";
+            this.lblFecha2.Size = new System.Drawing.Size(87, 13);
+            this.lblFecha2.TabIndex = 3;
+            this.lblFecha2.Text = "Fecha esperada:";
+            // 
+            // lblComentarios
+            // 
+            this.lblComentarios.AutoSize = true;
+            this.lblComentarios.Location = new System.Drawing.Point(533, 41);
+            this.lblComentarios.Name = "lblComentarios";
+            this.lblComentarios.Size = new System.Drawing.Size(68, 13);
+            this.lblComentarios.TabIndex = 4;
+            this.lblComentarios.Text = "Comentarios:";
+            // 
+            // dtpFechaPedido
+            // 
+            this.dtpFechaPedido.Enabled = false;
+            this.dtpFechaPedido.Location = new System.Drawing.Point(120, 81);
+            this.dtpFechaPedido.MinDate = new System.DateTime(2021, 12, 5, 20, 48, 48, 0);
+            this.dtpFechaPedido.Name = "dtpFechaPedido";
+            this.dtpFechaPedido.Size = new System.Drawing.Size(200, 20);
+            this.dtpFechaPedido.TabIndex = 5;
+            this.dtpFechaPedido.Value = new System.DateTime(2021, 12, 5, 20, 48, 48, 0);
+            // 
+            // dtpFechaEsperada
+            // 
+            this.dtpFechaEsperada.Location = new System.Drawing.Point(120, 123);
+            this.dtpFechaEsperada.Name = "dtpFechaEsperada";
+            this.dtpFechaEsperada.Size = new System.Drawing.Size(200, 20);
+            this.dtpFechaEsperada.TabIndex = 6;
+            // 
+            // txtComentarios
+            // 
+            this.txtComentarios.Location = new System.Drawing.Point(606, 34);
+            this.txtComentarios.MaxLength = 200;
+            this.txtComentarios.Multiline = true;
+            this.txtComentarios.Name = "txtComentarios";
+            this.txtComentarios.Size = new System.Drawing.Size(402, 109);
+            this.txtComentarios.TabIndex = 7;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.txtCantidad);
+            this.groupBox6.Controls.Add(this.txtPrecioU);
+            this.groupBox6.Controls.Add(this.lblCantidad);
+            this.groupBox6.Controls.Add(this.label7);
+            this.groupBox6.Controls.Add(this.dgvCarrito);
+            this.groupBox6.Controls.Add(this.btnBorrar);
+            this.groupBox6.Controls.Add(this.btnAgregarC);
+            this.groupBox6.Controls.Add(this.cmbProducto);
+            this.groupBox6.Controls.Add(this.lblProductoCarrito);
+            this.groupBox6.Location = new System.Drawing.Point(0, 175);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(1295, 361);
+            this.groupBox6.TabIndex = 1;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Detalle del pedido:";
+            // 
+            // lblProductoCarrito
+            // 
+            this.lblProductoCarrito.AutoSize = true;
+            this.lblProductoCarrito.Location = new System.Drawing.Point(53, 97);
+            this.lblProductoCarrito.Name = "lblProductoCarrito";
+            this.lblProductoCarrito.Size = new System.Drawing.Size(53, 13);
+            this.lblProductoCarrito.TabIndex = 0;
+            this.lblProductoCarrito.Text = "Producto:";
+            // 
+            // cmbProducto
+            // 
+            this.cmbProducto.FormattingEnabled = true;
+            this.cmbProducto.Location = new System.Drawing.Point(108, 89);
+            this.cmbProducto.Name = "cmbProducto";
+            this.cmbProducto.Size = new System.Drawing.Size(426, 21);
+            this.cmbProducto.TabIndex = 1;
+            // 
+            // btnAgregarC
+            // 
+            this.btnAgregarC.Location = new System.Drawing.Point(108, 277);
+            this.btnAgregarC.Name = "btnAgregarC";
+            this.btnAgregarC.Size = new System.Drawing.Size(111, 23);
+            this.btnAgregarC.TabIndex = 2;
+            this.btnAgregarC.Text = "Agregar al pedido";
+            this.btnAgregarC.UseVisualStyleBackColor = true;
+            this.btnAgregarC.Click += new System.EventHandler(this.btnAgregarC_Click);
+            // 
+            // btnBorrar
+            // 
+            this.btnBorrar.Location = new System.Drawing.Point(265, 277);
+            this.btnBorrar.Name = "btnBorrar";
+            this.btnBorrar.Size = new System.Drawing.Size(191, 23);
+            this.btnBorrar.TabIndex = 3;
+            this.btnBorrar.Text = "Borrar el producto seleccionado";
+            this.btnBorrar.UseVisualStyleBackColor = true;
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
+            // 
+            // dgvCarrito
+            // 
+            this.dgvCarrito.AllowUserToAddRows = false;
+            this.dgvCarrito.AllowUserToDeleteRows = false;
+            this.dgvCarrito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCarrito.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID,
+            this.Producto,
+            this.PrecioUnidad,
+            this.numeroLinea});
+            this.dgvCarrito.Location = new System.Drawing.Point(558, 19);
+            this.dgvCarrito.Name = "dgvCarrito";
+            this.dgvCarrito.ReadOnly = true;
+            this.dgvCarrito.Size = new System.Drawing.Size(721, 325);
+            this.dgvCarrito.TabIndex = 1;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID Producto";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            // 
+            // Producto
+            // 
+            this.Producto.HeaderText = "Nombre Producto";
+            this.Producto.Name = "Producto";
+            this.Producto.ReadOnly = true;
+            // 
+            // PrecioUnidad
+            // 
+            this.PrecioUnidad.HeaderText = "Precio";
+            this.PrecioUnidad.Name = "PrecioUnidad";
+            this.PrecioUnidad.ReadOnly = true;
+            // 
+            // numeroLinea
+            // 
+            this.numeroLinea.HeaderText = "Cantidad";
+            this.numeroLinea.Name = "numeroLinea";
+            this.numeroLinea.ReadOnly = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(53, 156);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(77, 13);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "Precio unitario:";
+            // 
+            // lblCantidad
+            // 
+            this.lblCantidad.AutoSize = true;
+            this.lblCantidad.Location = new System.Drawing.Point(53, 209);
+            this.lblCantidad.Name = "lblCantidad";
+            this.lblCantidad.Size = new System.Drawing.Size(52, 13);
+            this.lblCantidad.TabIndex = 5;
+            this.lblCantidad.Text = "Cantidad:";
+            // 
+            // txtPrecioU
+            // 
+            this.txtPrecioU.Location = new System.Drawing.Point(136, 153);
+            this.txtPrecioU.Name = "txtPrecioU";
+            this.txtPrecioU.Size = new System.Drawing.Size(137, 20);
+            this.txtPrecioU.TabIndex = 6;
+            this.txtPrecioU.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioU_KeyPress);
+            // 
+            // txtCantidad
+            // 
+            this.txtCantidad.Location = new System.Drawing.Point(136, 206);
+            this.txtCantidad.Name = "txtCantidad";
+            this.txtCantidad.Size = new System.Drawing.Size(137, 20);
+            this.txtCantidad.TabIndex = 7;
+            this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidad_KeyPress);
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.btnCancelar);
+            this.groupBox7.Controls.Add(this.btnFinalizar);
+            this.groupBox7.Location = new System.Drawing.Point(6, 542);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(1292, 93);
+            this.groupBox7.TabIndex = 8;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Opciones";
+            // 
+            // btnFinalizar
+            // 
+            this.btnFinalizar.Location = new System.Drawing.Point(397, 39);
+            this.btnFinalizar.Name = "btnFinalizar";
+            this.btnFinalizar.Size = new System.Drawing.Size(131, 23);
+            this.btnFinalizar.TabIndex = 0;
+            this.btnFinalizar.Text = "Finalizar pedido";
+            this.btnFinalizar.UseVisualStyleBackColor = true;
+            this.btnFinalizar.Click += new System.EventHandler(this.btnFinalizar_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(706, 39);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 1;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -620,6 +913,7 @@ namespace Pedidos
             this.Text = "Manejo de pedidos";
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.tabMenu.ResumeLayout(false);
+            this.tabPedidosPag.ResumeLayout(false);
             this.tabClientePag.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuario)).EndInit();
             this.groupBox2.ResumeLayout(false);
@@ -635,6 +929,12 @@ namespace Pedidos
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();
             this.groupBox4.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCarrito)).EndInit();
+            this.groupBox7.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -691,6 +991,33 @@ namespace Pedidos
         private System.Windows.Forms.Button btnModificarP;
         private System.Windows.Forms.Button btnLimpiarP;
         private System.Windows.Forms.Button btnAgregarP;
+        private System.Windows.Forms.TabPage tabPedidos;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnFinalizar;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.TextBox txtCantidad;
+        private System.Windows.Forms.TextBox txtPrecioU;
+        private System.Windows.Forms.Label lblCantidad;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DataGridView dgvCarrito;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Producto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioUnidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numeroLinea;
+        private System.Windows.Forms.Button btnBorrar;
+        private System.Windows.Forms.Button btnAgregarC;
+        private System.Windows.Forms.ComboBox cmbProducto;
+        private System.Windows.Forms.Label lblProductoCarrito;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.TextBox txtComentarios;
+        private System.Windows.Forms.DateTimePicker dtpFechaEsperada;
+        private System.Windows.Forms.DateTimePicker dtpFechaPedido;
+        private System.Windows.Forms.Label lblComentarios;
+        private System.Windows.Forms.Label lblFecha2;
+        private System.Windows.Forms.Label lblFecha1;
+        private System.Windows.Forms.Label lblCliente;
+        private System.Windows.Forms.ComboBox cmbCliente;
     }
 }
 
