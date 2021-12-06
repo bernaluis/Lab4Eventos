@@ -54,7 +54,7 @@ namespace Pedidos.Models
             DataTable mydt = new DataTable();
             Conexion c = new Conexion();
             SqlConnection conn = c.conexion();
-            string sql = "select idCliente,nombres,apellidos,telefono,direccion,ciudad,departamento from clientes where estado='1';";
+            string sql = "select idCliente as ID,nombres as Nombres,apellidos as Apellidos,telefono as Telefono,direccion as Direccion,ciudad as Ciudad,departamento as Departamento from clientes where estado='1';";
             SqlCommand cmd = new SqlCommand(sql, conn);
             SqlDataReader mydr = null;
             try
@@ -76,7 +76,7 @@ namespace Pedidos.Models
             DataTable mydt = new DataTable();
             Conexion c = new Conexion();
             SqlConnection conn = c.conexion();
-            string sql = "select idCliente,nombres,apellidos,telefono,direccion,ciudad,departamento from  clientes where apellidos like @apellidos or nombres like @apellidos and estado='1';";
+            string sql = "select idCliente as ID,nombres as Nombres,apellidos as Apellidos,telefono as Telefono,direccion as Direccion,ciudad as Ciudad,departamento as Departamento from clientes where apellidos like @apellidos or nombres like @apellidos and estado='1';";
             SqlCommand cmd = new SqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@apellidos", '%' + this.apellidos + '%');
             SqlDataReader mydr = null;
