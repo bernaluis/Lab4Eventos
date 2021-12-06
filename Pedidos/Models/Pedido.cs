@@ -44,7 +44,7 @@ namespace Pedidos.Models
             DataTable mydt = new DataTable();
             Conexion c = new Conexion();
             SqlConnection conn = c.conexion();
-            string sql = "select pedidos.idPedido as 'ID Pedido',clientes.idCliente as 'ID Cliente',pedidos.fechaPedido as 'Fecha pedido',pedidos.fechaEsperada as 'Fecha esperada',pedidos.comentarios as 'Comentarios'   from pedidos inner join clientes on pedidos.idCliente=clientes.idCliente order by pedidos.idPedido desc;";
+            string sql = "select pedidos.idPedido as 'ID Pedido',clientes.idCliente as 'ID Cliente',concat(clientes.nombres,' ',clientes.apellidos)as 'Nombre Cliente',pedidos.fechaPedido as 'Fecha pedido',pedidos.fechaEsperada as 'Fecha esperada',pedidos.comentarios as 'Comentarios',pedidos.estado as 'Estado'   from pedidos inner join clientes on pedidos.idCliente=clientes.idCliente order by pedidos.idPedido desc;";
             SqlCommand cmd = new SqlCommand(sql, conn);
             SqlDataReader mydr = null;
             try
@@ -91,7 +91,7 @@ namespace Pedidos.Models
             DataTable mydt = new DataTable();
             Conexion c = new Conexion();
             SqlConnection conn = c.conexion();
-            string sql = "select pedidos.idPedido as 'ID Pedido',clientes.idCliente as 'ID Cliente',pedidos.fechaPedido as 'Fecha pedido',pedidos.fechaEsperada as 'Fecha esperada',pedidos.comentarios as 'Comentarios'   from pedidos inner join clientes on pedidos.idCliente=clientes.idCliente where pedidos.estado='Procesado' order by pedidos.idPedido desc";
+            string sql = "select pedidos.idPedido as 'ID Pedido',clientes.idCliente as 'ID Cliente',concat(clientes.nombres,' ',clientes.apellidos)as 'Nombre Cliente',pedidos.fechaPedido as 'Fecha pedido',pedidos.fechaEsperada as 'Fecha esperada',pedidos.comentarios as 'Comentarios',pedidos.estado as 'Estado'   from pedidos inner join clientes on pedidos.idCliente=clientes.idCliente where pedidos.estado='Procesado' order by pedidos.idPedido desc";
             SqlCommand cmd = new SqlCommand(sql, conn);
             SqlDataReader mydr = null;
             try
@@ -113,7 +113,7 @@ namespace Pedidos.Models
             DataTable mydt = new DataTable();
             Conexion c = new Conexion();
             SqlConnection conn = c.conexion();
-            string sql = "select pedidos.idPedido as 'ID Pedido',clientes.idCliente as 'ID Cliente',pedidos.fechaPedido as 'Fecha pedido',pedidos.fechaEsperada as 'Fecha esperada',pedidos.comentarios as 'Comentarios'   from pedidos inner join clientes on pedidos.idCliente=clientes.idCliente where pedidos.estado='Enviado' order by pedidos.idPedido desc";
+            string sql = "select pedidos.idPedido as 'ID Pedido',clientes.idCliente as 'ID Cliente',concat(clientes.nombres,' ',clientes.apellidos)as 'Nombre Cliente',pedidos.fechaPedido as 'Fecha pedido',pedidos.fechaEsperada as 'Fecha esperada',pedidos.comentarios as 'Comentarios',pedidos.estado as 'Estado'   from pedidos inner join clientes on pedidos.idCliente=clientes.idCliente where pedidos.estado='Enviado' order by pedidos.idPedido desc";
             SqlCommand cmd = new SqlCommand(sql, conn);
             SqlDataReader mydr = null;
             try
@@ -135,7 +135,7 @@ namespace Pedidos.Models
             DataTable mydt = new DataTable();
             Conexion c = new Conexion();
             SqlConnection conn = c.conexion();
-            string sql = "select pedidos.idPedido as 'ID Pedido',clientes.idCliente as 'ID Cliente',pedidos.fechaPedido as 'Fecha pedido',pedidos.fechaEsperada as 'Fecha esperada',pedidos.comentarios as 'Comentarios'   from pedidos inner join clientes on pedidos.idCliente=clientes.idCliente where pedidos.estado='En Camino' order by pedidos.idPedido desc";
+            string sql = "select pedidos.idPedido as 'ID Pedido',clientes.idCliente as 'ID Cliente',concat(clientes.nombres,' ',clientes.apellidos)as 'Nombre Cliente',pedidos.fechaPedido as 'Fecha pedido',pedidos.fechaEsperada as 'Fecha esperada',pedidos.comentarios as 'Comentarios',pedidos.estado as 'Estado'   from pedidos inner join clientes on pedidos.idCliente=clientes.idCliente where pedidos.estado='En Camino' order by pedidos.idPedido desc";
             SqlCommand cmd = new SqlCommand(sql, conn);
             SqlDataReader mydr = null;
             try
@@ -157,7 +157,7 @@ namespace Pedidos.Models
             DataTable mydt = new DataTable();
             Conexion c = new Conexion();
             SqlConnection conn = c.conexion();
-            string sql = "select pedidos.idPedido as 'ID Pedido',clientes.idCliente as 'ID Cliente',pedidos.fechaPedido as 'Fecha pedido',pedidos.fechaEsperada as 'Fecha esperada',pedidos.comentarios as 'Comentarios'   from pedidos inner join clientes on pedidos.idCliente=clientes.idCliente where pedidos.estado='Cancelado' order by pedidos.idPedido desc";
+            string sql = "select pedidos.idPedido as 'ID Pedido',clientes.idCliente as 'ID Cliente',concat(clientes.nombres,' ',clientes.apellidos)as 'Nombre Cliente',pedidos.fechaPedido as 'Fecha pedido',pedidos.fechaEsperada as 'Fecha esperada',pedidos.comentarios as 'Comentarios',pedidos.estado as 'Estado'   from pedidos inner join clientes on pedidos.idCliente=clientes.idCliente where pedidos.estado='Cancelado' order by pedidos.idPedido desc";
             SqlCommand cmd = new SqlCommand(sql, conn);
             SqlDataReader mydr = null;
             try
@@ -179,7 +179,7 @@ namespace Pedidos.Models
             DataTable mydt = new DataTable();
             Conexion c = new Conexion();
             SqlConnection conn = c.conexion();
-            string sql = "select pedidos.idPedido as 'ID Pedido',clientes.idCliente as 'ID Cliente',pedidos.fechaPedido as 'Fecha pedido',pedidos.fechaEsperada as 'Fecha esperada',pedidos.comentarios as 'Comentarios'   from pedidos inner join clientes on pedidos.idCliente=clientes.idCliente where clientes.nombres=@apellidos or clientes.apellidos=@apellidos order by pedidos.idPedido desc;";
+            string sql = "select pedidos.idPedido as 'ID Pedido',clientes.idCliente as 'ID Cliente',concat(clientes.nombres,' ',clientes.apellidos)as 'Nombre Cliente',pedidos.fechaPedido as 'Fecha pedido',pedidos.fechaEsperada as 'Fecha esperada',pedidos.comentarios as 'Comentarios',pedidos.estado as 'Estado'   from pedidos inner join clientes on pedidos.idCliente=clientes.idCliente where clientes.nombres like @apellidos or clientes.apellidos like @apellidos order by pedidos.idPedido desc;";
             SqlCommand cmd = new SqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@apellidos", '%' + this.comentarios + '%');
             SqlDataReader mydr = null;
@@ -205,8 +205,8 @@ namespace Pedidos.Models
             string sql = "INSERT INTO pedidos(idCliente, fechaPedido,fechaEsperada,comentarios,estado)values(@idCliente,@fechaPedido,@fechaEsperada,@comentarios,@estado)  ; select IDENT_CURRENT('productos') as id;";
             SqlCommand cmd = new SqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@idCliente", this.idCliente);
-            cmd.Parameters.AddWithValue("@fechaPedido", this.fechaPedido);
-            cmd.Parameters.AddWithValue("@fechaEsperada", this.fechaEsperada);
+            cmd.Parameters.AddWithValue("@fechaPedido", this.fechaPedido.Date);
+            cmd.Parameters.AddWithValue("@fechaEsperada", this.fechaEsperada.Date);
             cmd.Parameters.AddWithValue("@comentarios", this.comentarios);
             cmd.Parameters.AddWithValue("@estado", this.estado);
             try
@@ -230,7 +230,7 @@ namespace Pedidos.Models
             SqlConnection conn = c.conexion();
             string sql = "UPDATE pedidos set fechaEsperada=@fechaEsperada,comentarios=@comentarios,estado=@estado WHERE idPedido=@idPedido;";
             SqlCommand cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@fechaEsperada", this.fechaEsperada);
+            cmd.Parameters.AddWithValue("@fechaEsperada", this.fechaEsperada.Date);
             cmd.Parameters.AddWithValue("@comentarios", this.comentarios);
             cmd.Parameters.AddWithValue("@estado", this.estado);
             cmd.Parameters.AddWithValue("@idPedido", this.idPedido);

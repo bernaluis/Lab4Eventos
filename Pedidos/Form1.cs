@@ -117,13 +117,23 @@ namespace Pedidos
             cmbProducto.ValueMember = "idProducto";
 
         }
+        //refrescar grid de pedidos
+        private void refrescarGridPedidos()
+        {
+            
+            dgvPedidos.DataSource = pe.getPedidos();
+            
+
+        }
         private void frmMain_Load(object sender, EventArgs e)
         {
+            refrescarGridPedidos(); 
             refrescarGridCliente();
             refrescarGridProducto();
             llenarCmbCliente();
             llenarCmbProducto();
             dtpFechaPedido.Value = DateTime.Now;
+            dgvPedidos.AutoResizeColumns();
         }
         //modificar cliente
         private void btnModificarU_Click(object sender, EventArgs e)
@@ -519,8 +529,9 @@ namespace Pedidos
                                         //verificar si se modifico
                                         if (idprod > 0)
                                         {
-                                            Console.WriteLine("detalle y inventario modificado");
+                                            
                                             refrescarGridProducto();
+                                            refrescarGridPedidos(); 
                                         }
                                     }
                                 }
@@ -535,6 +546,120 @@ namespace Pedidos
                     }
                 }
             }
+        }
+        //buscar producto
+        private void txtBuscarP_TextChanged(object sender, EventArgs e)
+        {
+            p.Producto = txtBuscarP.Text.Trim();
+            dgvProductos.DataSource = p.buscarProductos();
+        }
+        //buscar pedido segun cliente
+        private void txtBuscarPedido_TextChanged(object sender, EventArgs e)
+        {
+            pe.Comentarios = txtBuscarPedido.Text.Trim();
+            dgvPedidos.DataSource = pe.buscarPedidos();
+        }
+        //mostrar todos los pedidos
+        private void btnMostrarG_Click(object sender, EventArgs e)
+        {
+            dgvPedidos.DataSource = pe.getPedidos();
+        }
+
+        private void btnMostrarP_Click(object sender, EventArgs e)
+        {
+            dgvPedidos.DataSource = pe.getPedidosProcesados();
+        }
+
+        private void btnMostrarEC_Click(object sender, EventArgs e)
+        {
+            dgvPedidos.DataSource = pe.getPedidosEnCamino();
+        }
+
+        private void btnMostrarE_Click(object sender, EventArgs e)
+        {
+            dgvPedidos.DataSource = pe.getPedidosEnviados();
+        }
+
+        private void btnMostrarC_Click(object sender, EventArgs e)
+        {
+            dgvPedidos.DataSource = pe.getPedidosCancelados();
+        }
+
+        private void btnModificarPedido_Click(object sender, EventArgs e)
+        {
+            pe.IdPedido = Convert.ToInt64(idPedido);
+            pe.leerPedido();
+            if (pe.Estado == "Cancelado")
+            {
+                MessageBox.Show("Un pedido cancelado no puede ser modificado");
+            }
+            else
+            {
+                if (dtpFECambio.Value <= pe.FechaPedido)
+                {
+                    MessageBox.Show("La fecha esperada no puede ser menor o la misma a cuando se realizo el pedido");
+                }
+                else
+                {
+                    if (txtComentarioC.Text.Trim() != "" && cmbEstado.SelectedIndex != -1 && idPedido != null)
+                    {
+                        pe.Comentarios = txtComentarioC.Text.Trim();
+                        pe.FechaEsperada = dtpFECambio.Value;
+                        pe.Estado = cmbEstado.Text;
+                        pe.IdPedido = Convert.ToInt64(idPedido);
+                        //modificar
+                        long id = pe.modificarPedido();
+                        //verificar si se modifico
+                        if (id >= 0)
+                        {
+                            MessageBox.Show("Modificado con exito");
+                            refrescarGridPedidos();
+
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ingrese los datos");
+                    }
+                }
+            }
+        }
+
+        private void dgvPedidos_SelectionChanged(object sender, EventArgs e)
+        {
+            var row = dgvPedidos.CurrentRow;
+            idPedido = row.Cells[0].Value.ToString();
+            txtComentarioC.Text = row.Cells["Comentarios"].Value.ToString();
+        }
+
+        private void btnCancelarP_Click(object sender, EventArgs e)
+        {
+            pe.IdPedido = Convert.ToInt64(idPedido);
+            pe.leerPedido();
+            if (idPedido != null&&pe.Estado!="Cancelado")
+            {
+                pe.IdPedido = Convert.ToInt64(idPedido);
+                //modificar
+                long id = pe.cancelarPedido();
+                //verificar si se modifico
+                if (id >= 0)
+                {
+                    MessageBox.Show("Cancelado con exito");
+                    refrescarGridPedidos();
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un pedido que no este cancelado");
+            }
+        }
+
+        private void btnDetalle_Click(object sender, EventArgs e)
+        {
+            DetalleFrm frm = new DetalleFrm(idPedido);
+            frm.ShowDialog();
+            
         }
     }
 }

@@ -35,7 +35,6 @@ namespace Pedidos
             this.tabClientePag = new System.Windows.Forms.TabPage();
             this.dgvUsuario = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnHistorialU = new System.Windows.Forms.Button();
             this.btnEliminarU = new System.Windows.Forms.Button();
             this.btnModificarU = new System.Windows.Forms.Button();
             this.btnLimpiarU = new System.Windows.Forms.Button();
@@ -57,9 +56,6 @@ namespace Pedidos
             this.txtNombres = new System.Windows.Forms.TextBox();
             this.tabProductoPag = new System.Windows.Forms.TabPage();
             this.tabAbout = new System.Windows.Forms.TabPage();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblDetalle = new System.Windows.Forms.Label();
             this.lblProducto = new System.Windows.Forms.Label();
             this.lblDescripcion = new System.Windows.Forms.Label();
@@ -107,6 +103,28 @@ namespace Pedidos
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.btnFinalizar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.dgvPedidos = new System.Windows.Forms.DataGridView();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.lblBuscarPedido = new System.Windows.Forms.Label();
+            this.txtBuscarPedido = new System.Windows.Forms.TextBox();
+            this.btnMostrarG = new System.Windows.Forms.Button();
+            this.btnMostrarP = new System.Windows.Forms.Button();
+            this.btnMostrarEC = new System.Windows.Forms.Button();
+            this.btnMostrarE = new System.Windows.Forms.Button();
+            this.btnMostrarC = new System.Windows.Forms.Button();
+            this.btnModificarPedido = new System.Windows.Forms.Button();
+            this.btnDetalle = new System.Windows.Forms.Button();
+            this.lblEstado = new System.Windows.Forms.Label();
+            this.cmbEstado = new System.Windows.Forms.ComboBox();
+            this.lblFechaEsperadaC = new System.Windows.Forms.Label();
+            this.dtpFECambio = new System.Windows.Forms.DateTimePicker();
+            this.lblComentarioC = new System.Windows.Forms.Label();
+            this.txtComentarioC = new System.Windows.Forms.TextBox();
+            this.btnCancelarP = new System.Windows.Forms.Button();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabMenu.SuspendLayout();
             this.tabPedidosPag.SuspendLayout();
             this.tabClientePag.SuspendLayout();
@@ -115,16 +133,20 @@ namespace Pedidos
             this.groupBox1.SuspendLayout();
             this.tabProductoPag.SuspendLayout();
             this.tabAbout.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
             this.groupBox4.SuspendLayout();
+            this.tabPedidos.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarrito)).BeginInit();
             this.groupBox7.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPedidos)).BeginInit();
+            this.groupBox9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabMenu
@@ -182,7 +204,6 @@ namespace Pedidos
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.btnHistorialU);
             this.groupBox2.Controls.Add(this.btnEliminarU);
             this.groupBox2.Controls.Add(this.btnModificarU);
             this.groupBox2.Controls.Add(this.btnLimpiarU);
@@ -193,20 +214,11 @@ namespace Pedidos
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Opciones";
             // 
-            // btnHistorialU
-            // 
-            this.btnHistorialU.Location = new System.Drawing.Point(1097, 19);
-            this.btnHistorialU.Name = "btnHistorialU";
-            this.btnHistorialU.Size = new System.Drawing.Size(134, 23);
-            this.btnHistorialU.TabIndex = 17;
-            this.btnHistorialU.Text = "Ver historial de pedidos";
-            this.btnHistorialU.UseVisualStyleBackColor = true;
-            // 
             // btnEliminarU
             // 
-            this.btnEliminarU.Location = new System.Drawing.Point(512, 19);
+            this.btnEliminarU.Location = new System.Drawing.Point(1036, 19);
             this.btnEliminarU.Name = "btnEliminarU";
-            this.btnEliminarU.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminarU.Size = new System.Drawing.Size(116, 23);
             this.btnEliminarU.TabIndex = 16;
             this.btnEliminarU.Text = "Eliminar";
             this.btnEliminarU.UseVisualStyleBackColor = true;
@@ -214,9 +226,9 @@ namespace Pedidos
             // 
             // btnModificarU
             // 
-            this.btnModificarU.Location = new System.Drawing.Point(391, 19);
+            this.btnModificarU.Location = new System.Drawing.Point(829, 19);
             this.btnModificarU.Name = "btnModificarU";
-            this.btnModificarU.Size = new System.Drawing.Size(75, 23);
+            this.btnModificarU.Size = new System.Drawing.Size(118, 23);
             this.btnModificarU.TabIndex = 2;
             this.btnModificarU.Text = "Modificar";
             this.btnModificarU.UseVisualStyleBackColor = true;
@@ -412,36 +424,6 @@ namespace Pedidos
             this.tabAbout.Text = "Sobre la aplicacion";
             this.tabAbout.UseVisualStyleBackColor = true;
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::Pedidos.Properties.Resources.shut;
-            this.pictureBox3.Location = new System.Drawing.Point(742, 151);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(112, 112);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox3.TabIndex = 3;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::Pedidos.Properties.Resources.hack;
-            this.pictureBox2.Location = new System.Drawing.Point(401, 151);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(112, 112);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox2.TabIndex = 2;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Pedidos.Properties.Resources._3x__11_;
-            this.pictureBox1.Location = new System.Drawing.Point(575, 151);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(112, 112);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
             // lblDetalle
             // 
             this.lblDetalle.AutoSize = true;
@@ -584,6 +566,7 @@ namespace Pedidos
             this.txtBuscarP.Name = "txtBuscarP";
             this.txtBuscarP.Size = new System.Drawing.Size(370, 20);
             this.txtBuscarP.TabIndex = 9;
+            this.txtBuscarP.TextChanged += new System.EventHandler(this.txtBuscarP_TextChanged);
             // 
             // btnAgregarP
             // 
@@ -647,6 +630,9 @@ namespace Pedidos
             // 
             // tabPedidos
             // 
+            this.tabPedidos.Controls.Add(this.groupBox9);
+            this.tabPedidos.Controls.Add(this.dgvPedidos);
+            this.tabPedidos.Controls.Add(this.groupBox8);
             this.tabPedidos.Location = new System.Drawing.Point(4, 22);
             this.tabPedidos.Name = "tabPedidos";
             this.tabPedidos.Padding = new System.Windows.Forms.Padding(3);
@@ -902,6 +888,235 @@ namespace Pedidos
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.btnMostrarC);
+            this.groupBox8.Controls.Add(this.btnMostrarE);
+            this.groupBox8.Controls.Add(this.btnMostrarEC);
+            this.groupBox8.Controls.Add(this.btnDetalle);
+            this.groupBox8.Controls.Add(this.btnMostrarP);
+            this.groupBox8.Controls.Add(this.btnMostrarG);
+            this.groupBox8.Controls.Add(this.txtBuscarPedido);
+            this.groupBox8.Controls.Add(this.lblBuscarPedido);
+            this.groupBox8.Location = new System.Drawing.Point(6, 6);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(1289, 141);
+            this.groupBox8.TabIndex = 0;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "General:";
+            // 
+            // dgvPedidos
+            // 
+            this.dgvPedidos.AllowUserToAddRows = false;
+            this.dgvPedidos.AllowUserToDeleteRows = false;
+            this.dgvPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPedidos.Location = new System.Drawing.Point(8, 153);
+            this.dgvPedidos.Name = "dgvPedidos";
+            this.dgvPedidos.ReadOnly = true;
+            this.dgvPedidos.Size = new System.Drawing.Size(1287, 283);
+            this.dgvPedidos.TabIndex = 0;
+            this.dgvPedidos.SelectionChanged += new System.EventHandler(this.dgvPedidos_SelectionChanged);
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.btnCancelarP);
+            this.groupBox9.Controls.Add(this.txtComentarioC);
+            this.groupBox9.Controls.Add(this.lblComentarioC);
+            this.groupBox9.Controls.Add(this.dtpFECambio);
+            this.groupBox9.Controls.Add(this.lblFechaEsperadaC);
+            this.groupBox9.Controls.Add(this.cmbEstado);
+            this.groupBox9.Controls.Add(this.lblEstado);
+            this.groupBox9.Controls.Add(this.btnModificarPedido);
+            this.groupBox9.Location = new System.Drawing.Point(8, 442);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(1287, 199);
+            this.groupBox9.TabIndex = 1;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Opciones:";
+            // 
+            // lblBuscarPedido
+            // 
+            this.lblBuscarPedido.AutoSize = true;
+            this.lblBuscarPedido.Location = new System.Drawing.Point(330, 37);
+            this.lblBuscarPedido.Name = "lblBuscarPedido";
+            this.lblBuscarPedido.Size = new System.Drawing.Size(144, 13);
+            this.lblBuscarPedido.TabIndex = 0;
+            this.lblBuscarPedido.Text = "Buscar pedido segun cliente:";
+            // 
+            // txtBuscarPedido
+            // 
+            this.txtBuscarPedido.Location = new System.Drawing.Point(538, 30);
+            this.txtBuscarPedido.Name = "txtBuscarPedido";
+            this.txtBuscarPedido.Size = new System.Drawing.Size(381, 20);
+            this.txtBuscarPedido.TabIndex = 1;
+            this.txtBuscarPedido.TextChanged += new System.EventHandler(this.txtBuscarPedido_TextChanged);
+            // 
+            // btnMostrarG
+            // 
+            this.btnMostrarG.Location = new System.Drawing.Point(19, 96);
+            this.btnMostrarG.Name = "btnMostrarG";
+            this.btnMostrarG.Size = new System.Drawing.Size(148, 23);
+            this.btnMostrarG.TabIndex = 2;
+            this.btnMostrarG.Text = "Mostrar todos los pedidos";
+            this.btnMostrarG.UseVisualStyleBackColor = true;
+            this.btnMostrarG.Click += new System.EventHandler(this.btnMostrarG_Click);
+            // 
+            // btnMostrarP
+            // 
+            this.btnMostrarP.Location = new System.Drawing.Point(232, 96);
+            this.btnMostrarP.Name = "btnMostrarP";
+            this.btnMostrarP.Size = new System.Drawing.Size(159, 23);
+            this.btnMostrarP.TabIndex = 3;
+            this.btnMostrarP.Text = "Mostrar pedidos procesados";
+            this.btnMostrarP.UseVisualStyleBackColor = true;
+            this.btnMostrarP.Click += new System.EventHandler(this.btnMostrarP_Click);
+            // 
+            // btnMostrarEC
+            // 
+            this.btnMostrarEC.Location = new System.Drawing.Point(446, 96);
+            this.btnMostrarEC.Name = "btnMostrarEC";
+            this.btnMostrarEC.Size = new System.Drawing.Size(161, 23);
+            this.btnMostrarEC.TabIndex = 4;
+            this.btnMostrarEC.Text = "Mostrar pedidos en camino";
+            this.btnMostrarEC.UseVisualStyleBackColor = true;
+            this.btnMostrarEC.Click += new System.EventHandler(this.btnMostrarEC_Click);
+            // 
+            // btnMostrarE
+            // 
+            this.btnMostrarE.Location = new System.Drawing.Point(657, 96);
+            this.btnMostrarE.Name = "btnMostrarE";
+            this.btnMostrarE.Size = new System.Drawing.Size(151, 23);
+            this.btnMostrarE.TabIndex = 5;
+            this.btnMostrarE.Text = "Mostrar pedidos enviados";
+            this.btnMostrarE.UseVisualStyleBackColor = true;
+            this.btnMostrarE.Click += new System.EventHandler(this.btnMostrarE_Click);
+            // 
+            // btnMostrarC
+            // 
+            this.btnMostrarC.Location = new System.Drawing.Point(864, 96);
+            this.btnMostrarC.Name = "btnMostrarC";
+            this.btnMostrarC.Size = new System.Drawing.Size(176, 23);
+            this.btnMostrarC.TabIndex = 6;
+            this.btnMostrarC.Text = "Mostrar pedidos cancelados";
+            this.btnMostrarC.UseVisualStyleBackColor = true;
+            this.btnMostrarC.Click += new System.EventHandler(this.btnMostrarC_Click);
+            // 
+            // btnModificarPedido
+            // 
+            this.btnModificarPedido.Location = new System.Drawing.Point(1052, 46);
+            this.btnModificarPedido.Name = "btnModificarPedido";
+            this.btnModificarPedido.Size = new System.Drawing.Size(135, 23);
+            this.btnModificarPedido.TabIndex = 0;
+            this.btnModificarPedido.Text = "Modificar pedido";
+            this.btnModificarPedido.UseVisualStyleBackColor = true;
+            this.btnModificarPedido.Click += new System.EventHandler(this.btnModificarPedido_Click);
+            // 
+            // btnDetalle
+            // 
+            this.btnDetalle.Location = new System.Drawing.Point(1072, 96);
+            this.btnDetalle.Name = "btnDetalle";
+            this.btnDetalle.Size = new System.Drawing.Size(178, 23);
+            this.btnDetalle.TabIndex = 1;
+            this.btnDetalle.Text = "Ver detalle del pedido";
+            this.btnDetalle.UseVisualStyleBackColor = true;
+            this.btnDetalle.Click += new System.EventHandler(this.btnDetalle_Click);
+            // 
+            // lblEstado
+            // 
+            this.lblEstado.AutoSize = true;
+            this.lblEstado.Location = new System.Drawing.Point(516, 51);
+            this.lblEstado.Name = "lblEstado";
+            this.lblEstado.Size = new System.Drawing.Size(133, 13);
+            this.lblEstado.TabIndex = 2;
+            this.lblEstado.Text = "Cambiar estado de pedido:";
+            // 
+            // cmbEstado
+            // 
+            this.cmbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEstado.FormattingEnabled = true;
+            this.cmbEstado.Items.AddRange(new object[] {
+            "Procesado",
+            "En Camino",
+            "Enviado"});
+            this.cmbEstado.Location = new System.Drawing.Point(689, 43);
+            this.cmbEstado.Name = "cmbEstado";
+            this.cmbEstado.Size = new System.Drawing.Size(270, 21);
+            this.cmbEstado.TabIndex = 3;
+            // 
+            // lblFechaEsperadaC
+            // 
+            this.lblFechaEsperadaC.AutoSize = true;
+            this.lblFechaEsperadaC.Location = new System.Drawing.Point(524, 116);
+            this.lblFechaEsperadaC.Name = "lblFechaEsperadaC";
+            this.lblFechaEsperadaC.Size = new System.Drawing.Size(125, 13);
+            this.lblFechaEsperadaC.TabIndex = 4;
+            this.lblFechaEsperadaC.Text = "Cambiar fecha esperada:";
+            this.lblFechaEsperadaC.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // dtpFECambio
+            // 
+            this.dtpFECambio.Location = new System.Drawing.Point(689, 110);
+            this.dtpFECambio.Name = "dtpFECambio";
+            this.dtpFECambio.Size = new System.Drawing.Size(270, 20);
+            this.dtpFECambio.TabIndex = 5;
+            // 
+            // lblComentarioC
+            // 
+            this.lblComentarioC.AutoSize = true;
+            this.lblComentarioC.Location = new System.Drawing.Point(26, 51);
+            this.lblComentarioC.Name = "lblComentarioC";
+            this.lblComentarioC.Size = new System.Drawing.Size(103, 13);
+            this.lblComentarioC.TabIndex = 6;
+            this.lblComentarioC.Text = "Cambiar comentario:";
+            // 
+            // txtComentarioC
+            // 
+            this.txtComentarioC.Location = new System.Drawing.Point(135, 48);
+            this.txtComentarioC.Multiline = true;
+            this.txtComentarioC.Name = "txtComentarioC";
+            this.txtComentarioC.Size = new System.Drawing.Size(324, 100);
+            this.txtComentarioC.TabIndex = 7;
+            // 
+            // btnCancelarP
+            // 
+            this.btnCancelarP.Location = new System.Drawing.Point(1052, 106);
+            this.btnCancelarP.Name = "btnCancelarP";
+            this.btnCancelarP.Size = new System.Drawing.Size(135, 23);
+            this.btnCancelarP.TabIndex = 7;
+            this.btnCancelarP.Text = "Cancelar pedido";
+            this.btnCancelarP.UseVisualStyleBackColor = true;
+            this.btnCancelarP.Click += new System.EventHandler(this.btnCancelarP_Click);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::Pedidos.Properties.Resources.shut;
+            this.pictureBox3.Location = new System.Drawing.Point(742, 151);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(112, 112);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox3.TabIndex = 3;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Pedidos.Properties.Resources.hack;
+            this.pictureBox2.Location = new System.Drawing.Point(401, 151);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(112, 112);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox2.TabIndex = 2;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Pedidos.Properties.Resources._3x__11_;
+            this.pictureBox1.Location = new System.Drawing.Point(575, 151);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(112, 112);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -922,19 +1137,25 @@ namespace Pedidos
             this.tabProductoPag.ResumeLayout(false);
             this.tabAbout.ResumeLayout(false);
             this.tabAbout.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();
             this.groupBox4.ResumeLayout(false);
+            this.tabPedidos.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarrito)).EndInit();
             this.groupBox7.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPedidos)).EndInit();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -967,7 +1188,6 @@ namespace Pedidos
         private System.Windows.Forms.TextBox txtTelefono;
         private System.Windows.Forms.TextBox txtApellidos;
         private System.Windows.Forms.TextBox txtNombres;
-        private System.Windows.Forms.Button btnHistorialU;
         private System.Windows.Forms.Button btnEliminarU;
         private System.Windows.Forms.Button btnModificarU;
         private System.Windows.Forms.Button btnLimpiarU;
@@ -1018,6 +1238,25 @@ namespace Pedidos
         private System.Windows.Forms.Label lblFecha1;
         private System.Windows.Forms.Label lblCliente;
         private System.Windows.Forms.ComboBox cmbCliente;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.ComboBox cmbEstado;
+        private System.Windows.Forms.Label lblEstado;
+        private System.Windows.Forms.Button btnDetalle;
+        private System.Windows.Forms.Button btnModificarPedido;
+        private System.Windows.Forms.DataGridView dgvPedidos;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.Button btnMostrarC;
+        private System.Windows.Forms.Button btnMostrarE;
+        private System.Windows.Forms.Button btnMostrarEC;
+        private System.Windows.Forms.Button btnMostrarP;
+        private System.Windows.Forms.Button btnMostrarG;
+        private System.Windows.Forms.TextBox txtBuscarPedido;
+        private System.Windows.Forms.Label lblBuscarPedido;
+        private System.Windows.Forms.TextBox txtComentarioC;
+        private System.Windows.Forms.Label lblComentarioC;
+        private System.Windows.Forms.DateTimePicker dtpFECambio;
+        private System.Windows.Forms.Label lblFechaEsperadaC;
+        private System.Windows.Forms.Button btnCancelarP;
     }
 }
 

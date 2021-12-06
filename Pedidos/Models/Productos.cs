@@ -56,7 +56,7 @@ namespace Pedidos.Models
                 mydr = cmd.ExecuteReader();
                 mydt.Load(mydr);
                 this.cantidadEnStock = Convert.ToInt32(mydt.Rows[0][0].ToString());
-                Console.WriteLine("cantidadadasdazsdasd "+cantidadEnStock);
+                
             }
             finally
             {
