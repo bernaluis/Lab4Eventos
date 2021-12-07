@@ -101,6 +101,7 @@
     <None Include="Resources\hack.gif" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\pedidos.bak" />
     <None Include="Resources\shut.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

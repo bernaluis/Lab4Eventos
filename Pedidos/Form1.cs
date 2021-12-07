@@ -187,13 +187,17 @@ namespace Pedidos
         private void dgvUsuario_SelectionChanged(object sender, EventArgs e)
         {
             var row = dgvUsuario.CurrentRow;
-            idCliente = row.Cells[0].Value.ToString();
-            txtNombres.Text = row.Cells["Nombres"].Value.ToString();
-            txtApellidos.Text = row.Cells["Apellidos"].Value.ToString();
-            txtTelefono.Text = row.Cells["Telefono"].Value.ToString();
-            txtDireccion.Text = row.Cells["Direccion"].Value.ToString();
-            txtCiudad.Text = row.Cells["Ciudad"].Value.ToString();
-            txtDepartamento.Text = row.Cells["Departamento"].Value.ToString();
+            if (row != null)
+            {
+                idCliente = row.Cells[0].Value.ToString();
+                txtNombres.Text = row.Cells["Nombres"].Value.ToString();
+                txtApellidos.Text = row.Cells["Apellidos"].Value.ToString();
+                txtTelefono.Text = row.Cells["Telefono"].Value.ToString();
+                txtDireccion.Text = row.Cells["Direccion"].Value.ToString();
+                txtCiudad.Text = row.Cells["Ciudad"].Value.ToString();
+                txtDepartamento.Text = row.Cells["Departamento"].Value.ToString();
+            }
+                
         }
 
         //buscar cliente 
@@ -230,11 +234,16 @@ namespace Pedidos
         private void dgvProductos_SelectionChanged(object sender, EventArgs e)
         {
             var row = dgvProductos.CurrentRow;
-            idProducto = row.Cells[0].Value.ToString();
-            txtNombreP.Text = row.Cells["Producto"].Value.ToString();
-            txtDescripcionP.Text = row.Cells["Descripcion"].Value.ToString();
-            txtPrecioP.Text = row.Cells["Precio"].Value.ToString();
-            txtCantidadStock.Text = row.Cells["Stock"].Value.ToString();
+            if (row != null)
+            {
+                idProducto = row.Cells[0].Value.ToString();
+                txtNombreP.Text = row.Cells["Producto"].Value.ToString();
+                txtDescripcionP.Text = row.Cells["Descripcion"].Value.ToString();
+                txtPrecioP.Text = row.Cells["Precio"].Value.ToString();
+                txtCantidadStock.Text = row.Cells["Stock"].Value.ToString();
+            }
+                
+            
         }
         //limpiar form de producto
         private void btnLimpiarP_Click(object sender, EventArgs e)
@@ -500,7 +509,8 @@ namespace Pedidos
                             //solo puede ser cancelado si aun esta en estado de procesado
                             pe.Estado = "Procesado";
                             //agregar
-                            long id = pe.agregarPedido(); ;
+                            long id = pe.agregarPedido();
+                            Console.WriteLine(id);
                             //verificar si se agrego
                             if (id > 0)
                             {
@@ -589,9 +599,9 @@ namespace Pedidos
         {
             pe.IdPedido = Convert.ToInt64(idPedido);
             pe.leerPedido();
-            if (pe.Estado == "Cancelado")
+            if (pe.Estado == "Cancelado"|| pe.Estado == "Enviado")
             {
-                MessageBox.Show("Un pedido cancelado no puede ser modificado");
+                MessageBox.Show("Un pedido cancelado/enviado no puede ser modificado");
             }
             else
             {
@@ -627,16 +637,23 @@ namespace Pedidos
 
         private void dgvPedidos_SelectionChanged(object sender, EventArgs e)
         {
+
             var row = dgvPedidos.CurrentRow;
-            idPedido = row.Cells[0].Value.ToString();
-            txtComentarioC.Text = row.Cells["Comentarios"].Value.ToString();
+            if (row != null)
+            {
+                
+                idPedido = row.Cells[0].Value.ToString();
+                txtComentarioC.Text = row.Cells["Comentarios"].Value.ToString();
+            }
+
+
         }
 
         private void btnCancelarP_Click(object sender, EventArgs e)
         {
             pe.IdPedido = Convert.ToInt64(idPedido);
             pe.leerPedido();
-            if (idPedido != null&&pe.Estado!="Cancelado")
+            if (idPedido != null&&pe.Estado!="Cancelado" && pe.Estado != "Enviado" && pe.Estado != "En Camino")
             {
                 pe.IdPedido = Convert.ToInt64(idPedido);
                 //modificar
@@ -651,7 +668,7 @@ namespace Pedidos
             }
             else
             {
-                MessageBox.Show("Seleccione un pedido que no este cancelado");
+                MessageBox.Show("Solo se pueden cancelar los pedidos que aun esten siendo procesados");
             }
         }
 

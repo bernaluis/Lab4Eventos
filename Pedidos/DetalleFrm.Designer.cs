@@ -29,9 +29,10 @@ namespace Pedidos
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetalleFrm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dgvDetalle = new System.Windows.Forms.DataGridView();
             this.lblId = new System.Windows.Forms.Label();
+            this.dgvDetalle = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalle)).BeginInit();
             this.SuspendLayout();
@@ -47,17 +48,6 @@ namespace Pedidos
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detalle del pedido:";
             // 
-            // dgvDetalle
-            // 
-            this.dgvDetalle.AllowUserToAddRows = false;
-            this.dgvDetalle.AllowUserToDeleteRows = false;
-            this.dgvDetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDetalle.Location = new System.Drawing.Point(3, 19);
-            this.dgvDetalle.Name = "dgvDetalle";
-            this.dgvDetalle.ReadOnly = true;
-            this.dgvDetalle.Size = new System.Drawing.Size(779, 413);
-            this.dgvDetalle.TabIndex = 0;
-            // 
             // lblId
             // 
             this.lblId.AutoSize = true;
@@ -69,14 +59,26 @@ namespace Pedidos
             this.lblId.Text = "id";
             this.lblId.Visible = false;
             // 
+            // dgvDetalle
+            // 
+            this.dgvDetalle.AllowUserToAddRows = false;
+            this.dgvDetalle.AllowUserToDeleteRows = false;
+            this.dgvDetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDetalle.Location = new System.Drawing.Point(3, 19);
+            this.dgvDetalle.Name = "dgvDetalle";
+            this.dgvDetalle.ReadOnly = true;
+            this.dgvDetalle.Size = new System.Drawing.Size(779, 413);
+            this.dgvDetalle.TabIndex = 0;
+            // 
             // DetalleFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(792, 441);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DetalleFrm";
-            this.Text = "DetalleFrm";
+            this.Text = "Detalle";
             this.Load += new System.EventHandler(this.DetalleFrm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

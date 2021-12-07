@@ -1,5 +1,3 @@
-create database pedidos;
-use pedidos;
 create table clientes(
 idCliente  bigint not null primary key identity(1,1),
 	nombres varchar(75),

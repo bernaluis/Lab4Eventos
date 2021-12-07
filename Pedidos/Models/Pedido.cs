@@ -202,7 +202,7 @@ namespace Pedidos.Models
             long id = 0;
             Conexion c = new Conexion();
             SqlConnection conn = c.conexion();
-            string sql = "INSERT INTO pedidos(idCliente, fechaPedido,fechaEsperada,comentarios,estado)values(@idCliente,@fechaPedido,@fechaEsperada,@comentarios,@estado)  ; select IDENT_CURRENT('productos') as id;";
+            string sql = "INSERT INTO pedidos(idCliente, fechaPedido,fechaEsperada,comentarios,estado)values(@idCliente,@fechaPedido,@fechaEsperada,@comentarios,@estado)  ; select IDENT_CURRENT('pedidos') as id;";
             SqlCommand cmd = new SqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@idCliente", this.idCliente);
             cmd.Parameters.AddWithValue("@fechaPedido", this.fechaPedido.Date);
