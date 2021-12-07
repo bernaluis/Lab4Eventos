@@ -41,9 +41,9 @@ namespace Pedidos
             // 
             this.groupBox1.Controls.Add(this.lblId);
             this.groupBox1.Controls.Add(this.dgvDetalle);
-            this.groupBox1.Location = new System.Drawing.Point(0, 12);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(788, 426);
+            this.groupBox1.Size = new System.Drawing.Size(600, 423);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detalle del pedido:";
@@ -64,17 +64,17 @@ namespace Pedidos
             this.dgvDetalle.AllowUserToAddRows = false;
             this.dgvDetalle.AllowUserToDeleteRows = false;
             this.dgvDetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDetalle.Location = new System.Drawing.Point(3, 19);
+            this.dgvDetalle.Location = new System.Drawing.Point(0, 19);
             this.dgvDetalle.Name = "dgvDetalle";
             this.dgvDetalle.ReadOnly = true;
-            this.dgvDetalle.Size = new System.Drawing.Size(779, 413);
+            this.dgvDetalle.Size = new System.Drawing.Size(606, 395);
             this.dgvDetalle.TabIndex = 0;
             // 
             // DetalleFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(792, 441);
+            this.ClientSize = new System.Drawing.Size(624, 438);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DetalleFrm";

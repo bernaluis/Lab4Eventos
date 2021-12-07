@@ -153,8 +153,8 @@ namespace Pedidos
             // 
             this.tabMenu.Controls.Add(this.tabPedidosPag);
             this.tabMenu.Controls.Add(this.tabPedidos);
-            this.tabMenu.Controls.Add(this.tabClientePag);
             this.tabMenu.Controls.Add(this.tabProductoPag);
+            this.tabMenu.Controls.Add(this.tabClientePag);
             this.tabMenu.Controls.Add(this.tabAbout);
             this.tabMenu.Location = new System.Drawing.Point(0, 0);
             this.tabMenu.Name = "tabMenu";
